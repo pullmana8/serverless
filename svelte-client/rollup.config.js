@@ -6,8 +6,9 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
-import autoPreprocess from 'svelte-preprocess';
 import typescript from 'rollup-plugin-typescript2';
+import autoPreprocess from 'svelte-preprocess';
+import postcss from 'rollup-plugin-postcss';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -36,7 +37,19 @@ export default {
 			}),
 			commonjs(),
 			typescript(),
+			postcss({
+				extract: true,
+				minimize: true,
+				use: [
+					['sass', {
+						includePaths: [
+							'./src/theme',
+							'./node_modules'
+						]
+					}]
+				]
 
+			}),
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
 				babelHelpers: 'runtime',
