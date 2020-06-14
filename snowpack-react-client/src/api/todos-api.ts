@@ -1,35 +1,66 @@
-import { apiEndpoint } from "../config"
-import { Todo } from "../../types/Todo"
-import { UpdateTodoRequest } from "../../types/UpdateTodoRequest"
-import { CreateTodoRequest } from "../../types/CreateTodoRequest"
-import superagent from 'superagent'
-import signale from 'signale'
+import Axios from 'axios';
+import signale from 'signale';
+import { Todo } from '../../types/Todo';
+import { apiEndpoint } from '../config';
+import { CreateTodoRequest } from '../../types/CreateTodoRequest';
+import { UpdateTodoRequest } from '../../types/UpdateTodoRequest';
 
 export async function getTodos(idToken: string): Promise<Todo[]> {
-    signale.success('Fetching todos...')
+  signale.info('Fetching todos...');
 
-    const response = await superagent.get(`${apiEndpoint}/todos`, function (err: any, res: any) {
-        signale.success(response.body)
-    }).set({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${idToken}`
-    }).send()
+  const response = await Axios.get(`${apiEndpoint}/todos`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+  });
 
-    signale.success('Todos: ', response)
-    return response.body
+  signale.log('Todos: ', response.data);
+  return response.data.items;
 }
 
-export async function patchTodo(idToken: string, todoId: string, updatedTodo: UpdateTodoRequest): Promise<void> {
-    await superagent.patch(`${apiEndpoint}/todos/${todoId}`).set({
+export async function createTodo(
+  idToken: string,
+  newTodo: CreateTodoRequest,
+): Promise<Todo> {
+  const response = await Axios.post(
+    `${apiEndpoint}/todos`,
+    JSON.stringify(newTodo),
+    {
+      headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${idToken}`
-    }).send(updatedTodo)
+        Authorization: `Bearer ${idToken}`,
+      },
+    },
+  );
+  return response.data.item;
 }
 
-export async function createTodo(idToken: string, newTodo: CreateTodoRequest): Promise<Todo> {
-    const response = await superagent.post(`${apiEndpoint}/todos`).set({
+export async function patchTodo(
+  idToken: string,
+  todoId: string,
+  updatedTodo: UpdateTodoRequest,
+): Promise<void> {
+  await Axios.patch(
+    `${apiEndpoint}/todos/${todoId}`,
+    JSON.stringify(updatedTodo),
+    {
+      headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${idToken}`
-    }).send(newTodo)
-    return response.body
+        Authorization: `Bearer ${idToken}`,
+      },
+    },
+  );
+}
+
+export async function deleteTodo(
+  idToken: string,
+  todoId: string,
+): Promise<void> {
+  await Axios.delete(`${apiEndpoint}/todos/${todoId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${idToken}`,
+    },
+  });
 }

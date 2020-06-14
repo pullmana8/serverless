@@ -1,24 +1,24 @@
-import * as React from 'react'
-import Auth from '../auth/Auth'
-import Button from 'react-bootstrap/Button'
+import * as React from 'react';
+import Auth from '../auth/Auth';
+import Button from 'react-bootstrap/Button';
 
 interface LogInProps {
-    auth: Auth 
+  auth: Auth;
 }
 
-interface LogInState { }
+interface LogInState {}
 
 export class LogIn extends React.PureComponent<LogInProps, LogInState> {
-    onLogin = () => {
-        this.props.auth.login()
-    }
+  onLogin = () => {
+    this.props.auth.login();
+  };
 
-    render() {
-        return (
-            <div>
-                <h1>Please log in</h1>
-                <Button onClick={this.onLogin}>Log In</Button>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <h1>Please log in</h1>
+        <Button onClick={this.onLogin}>Log In</Button>
+      </div>
+    );
+  }
 }

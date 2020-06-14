@@ -1,30 +1,33 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import Auth from '../auth/Auth'
+import Auth from '../auth/Auth';
 
 enum UploadState {
-    NoUpload,
-    FetchingPresignedUrl,
-    UploadingFile,
+  NoUpload,
+  FetchingPresignedUrl,
+  UploadingFile,
 }
 
 interface EditTodoProps {
-    match: {
-        params: {
-            todoId: string
-        }
-    }
-    auth: Auth
+  match: {
+    params: {
+      todoId: string;
+    };
+  };
+  auth: Auth;
 }
 
 interface EditTodoState {
-    file: any
-    uploadState: UploadState
+  file: any;
+  uploadState: UploadState;
 }
 
-export class EditTodo extends React.PureComponent<EditTodoProps, EditTodoState> {
-    state: EditTodoState = {
-        file: undefined,
-        uploadState: UploadState.NoUpload
-    }
+export class EditTodo extends React.PureComponent<
+  EditTodoProps,
+  EditTodoState
+> {
+  state: EditTodoState = {
+    file: undefined,
+    uploadState: UploadState.NoUpload,
+  };
 }
