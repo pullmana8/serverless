@@ -1,7 +1,9 @@
 import 'bloomer'
+import 'bulma/css/bulma.css'
 import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
 import { makeAuthRouting } from './routing';
+import * as serviceWorker from './serviceWorker';
+import './index.css'
 
 ReactDOM.render(makeAuthRouting(), document.getElementById('root'));
 

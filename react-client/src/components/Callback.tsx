@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'bloomer/lib/elements/Button'
+import { Button } from 'bloomer'
 
 function Callback() {
     return (

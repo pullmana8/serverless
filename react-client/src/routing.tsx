@@ -1,10 +1,10 @@
 import React from 'react'
 import { Router, Route } from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
 import Callback from './components/Callback'
 import Auth from './auth/Auth'
 import App from './App'
 
+const createHistory = require('history').createBrowserHistory
 const history = createHistory()
 const auth = new Auth(history)
 
