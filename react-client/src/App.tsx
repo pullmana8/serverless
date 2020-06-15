@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Router } from 'react-router-dom';
+import { Router, Link } from 'react-router-dom';
 import Auth from './auth/Auth';
-
-import { Section, Container, Columns, Column, Menu, MenuLink, Nav, NavCenter, NavRight } from 'bloomer'
+import { Menu, Grid, Segment } from 'semantic-ui-react';
 
 export interface AppProps { }
 export interface AppProps {
@@ -30,52 +29,43 @@ export default class App extends Component<AppProps, AppState> {
 
   render() {
     return (
-      <Section>
-        <Container>
-          <Columns>
-            <Column>
+      <Segment style={{ padding: '8em 0em' }} vertical>
+        <Grid container stackable verticalAlign="middle">
+          <Grid.Row>
+            <Grid.Column width={16}>
               <Router history={this.props.history}>
                 {this.generateMenu()}
               </Router>
-            </Column>
-          </Columns>
-        </Container>
-      </Section>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
     )
   }
 
   generateMenu() {
     return (
-      <Nav>
-        <NavCenter>
-          <Menu>
-            <MenuLink href='/'>
-              Home
-            </MenuLink>
-          </Menu>
-        </NavCenter>
-        <NavRight isMenu>
-          <Menu>
-            <MenuLink>
-              {this.logInLogOutButton()}
-            </MenuLink>
-          </Menu>
-        </NavRight>
-      </Nav>
+      <Menu>
+        <Menu.Item name="home">
+          <Link to="/">Home</Link>
+        </Menu.Item>
+
+        <Menu.Menu position="right">{this.logInLogOutButton()}</Menu.Menu>
+      </Menu>
     )
   }
 
   logInLogOutButton() {
     if (this.props.auth.isAuthenticated()) {
       return (
-        <MenuLink name="logout" onClick={this.handleLogout}>
+        <Menu.Item id="logout" onClick={this.handleLogout}>
           Log Out
-        </MenuLink>
+        </Menu.Item>
       )
     } else {
-      <MenuLink name="login" onClick={this.handleLogin}>
+      <Menu.Item id="login" onClick={this.handleLogin}>
         Log In
-      </MenuLink>
+      </Menu.Item>
     }
   }
 }

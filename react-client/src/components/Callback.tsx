@@ -1,9 +1,11 @@
 import React from 'react'
-import { Button } from 'bloomer'
+import { Dimmer, Loader } from 'semantic-ui-react'
 
 function Callback() {
     return (
-        <Button isColor='warning' isLoading>isLoading={true}</Button>
+        <Dimmer active>
+            <Loader content="Loading" />
+        </Dimmer>
     )
 }
 

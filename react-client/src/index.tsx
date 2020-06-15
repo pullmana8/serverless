@@ -1,5 +1,3 @@
-import 'bloomer'
-import 'bulma/css/bulma.css'
 import ReactDOM from 'react-dom';
 import { makeAuthRouting } from './routing';
 import * as serviceWorker from './serviceWorker';
