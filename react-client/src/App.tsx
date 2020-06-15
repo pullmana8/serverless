@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Router } from 'react-router-dom';
 import Auth from './auth/Auth';
 
-import { Section, Container, Columns, Column, Menu, MenuLink, MenuList } from 'bloomer'
+import { Section, Container, Columns, Column, Menu, MenuLink, Nav, NavCenter, NavRight } from 'bloomer'
 
 export interface AppProps { }
 export interface AppProps {
@@ -32,10 +32,10 @@ export default class App extends Component<AppProps, AppState> {
     return (
       <Section>
         <Container>
-          <Columns isCentered>
-            <Column isSize='1/3'>
+          <Columns>
+            <Column>
               <Router history={this.props.history}>
-              {this.generateMenu()}
+                {this.generateMenu()}
               </Router>
             </Column>
           </Columns>
@@ -46,13 +46,36 @@ export default class App extends Component<AppProps, AppState> {
 
   generateMenu() {
     return (
-      <Menu>
-        <MenuLink href='/'>
-          Home          
-        </MenuLink>
-        <MenuList>
-        </MenuList>
-      </Menu>
+      <Nav>
+        <NavCenter>
+          <Menu>
+            <MenuLink href='/'>
+              Home
+            </MenuLink>
+          </Menu>
+        </NavCenter>
+        <NavRight isMenu>
+          <Menu>
+            <MenuLink>
+              {this.logInLogOutButton()}
+            </MenuLink>
+          </Menu>
+        </NavRight>
+      </Nav>
     )
+  }
+
+  logInLogOutButton() {
+    if (this.props.auth.isAuthenticated()) {
+      return (
+        <MenuLink name="logout" onClick={this.handleLogout}>
+          Log Out
+        </MenuLink>
+      )
+    } else {
+      <MenuLink name="login" onClick={this.handleLogin}>
+        Log In
+      </MenuLink>
+    }
   }
 }
