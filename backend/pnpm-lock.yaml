@@ -1,4 +1,6 @@
 dependencies:
+  inversify: 5.0.1
+  reflect-metadata: 0.1.13
   source-map-support: 0.5.19
 devDependencies:
   '@types/aws-lambda': 8.10.56
@@ -1934,6 +1936,10 @@ packages:
       node: '>=8.0.0'
     resolution:
       integrity: sha512-E0c4rPwr9ByePfNlTIB8z51kK1s2n6jrHuJeEHENl/sbq2G/S1auvibgEwNR4uSyiU+PiYHqSwsgGiXjG8p5ZQ==
+  /inversify/5.0.1:
+    dev: false
+    resolution:
+      integrity: sha512-Ieh06s48WnEYGcqHepdsJUIJUXpwH5o5vodAX+DK2JA/gjy4EbEcQZxw+uFfzysmKjiLXGYwNG3qDZsKVMcINQ==
   /is-accessor-descriptor/0.1.6:
     dependencies:
       kind-of: 3.2.2
@@ -3018,6 +3024,10 @@ packages:
       node: '>=8.10.0'
     resolution:
       integrity: sha512-0xe001vZBnJEK+uKcj8qOhyAKPzIT+gStxWr3LCB0DwcXR5NZJ3IaC+yGnHCYzB/S7ov3m3EEbZI2zeNvX+hGQ==
+  /reflect-metadata/0.1.13:
+    dev: false
+    resolution:
+      integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
   /regex-not/1.0.2:
     dependencies:
       extend-shallow: 3.0.2
@@ -3950,6 +3960,8 @@ specifiers:
   eslint-config-airbnb-base: ^14.2.0
   eslint-plugin-import: ^2.21.2
   fork-ts-checker-webpack-plugin: ^3.1.1
+  inversify: ^5.0.1
+  reflect-metadata: ^0.1.13
   serverless-webpack: ^5.3.2
   source-map-support: ^0.5.19
   ts-loader: ^5.4.5
